@@ -8,3 +8,6 @@ torch==2.2.2
 rouge_score==0.1.2
 sacrebleu
 llama-index
+faiss-cpu
+pymilvus
+llm_cost_estimation
