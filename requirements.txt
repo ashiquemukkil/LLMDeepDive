@@ -11,3 +11,4 @@ llama-index
 faiss-cpu
 pymilvus
 llm_cost_estimation
+langchain_experimental
