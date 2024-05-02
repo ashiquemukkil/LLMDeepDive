@@ -1,6 +1,4 @@
 import os
-import openai
-from openai import OpenAI
 import requests
 
 from typing import Optional,List,Iterator,Any
@@ -11,19 +9,15 @@ from langchain_community.embeddings import OllamaEmbeddings
 OLLAMA_URL = "https://sesame-panzanella-rzl32icxd728lczq.salad.cloud/" 
 SALAD_HEADER ={"Salad-Api-Key":"c598a341-4139-4e45-92e6-2880fbd61425"}
 
-os.environ["OPENAI_API_KEY"] = "sk-xxxxxx"
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-client = OpenAI()
-
-def get_openai_completion(prompt, model="gpt-3.5-turbo"):
-    messages = [{"role": "user", "content": prompt}]
-    response = client.chat.completions.create(
-        model=model,
-        messages=messages,
-        temperature=0,
-    )
-    return response.choices[0].message.content
+# def get_openai_completion(prompt, model="gpt-3.5-turbo"):
+#     messages = [{"role": "user", "content": prompt}]
+#     response = client.chat.completions.create(
+#         model=model,
+#         messages=messages,
+#         temperature=0,
+#     )
+#     return response.choices[0].message.content
 
 
 def get_llama_chat_completion(messages,model="llama2",**kwargs):
@@ -117,6 +111,5 @@ def pull_llama2():
     return response.status_code
 
 if __name__ == "__main__":
-    texts =["a","b"] 
-    emb =SaladOllamaEmbeddings()
-    print(emb.embed_documents(texts))
+    llm = SaladChatOllama()
+    llm.invoke("Hello, world!")
