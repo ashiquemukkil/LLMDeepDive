@@ -8,7 +8,7 @@ from langchain_community.embeddings import OllamaEmbeddings
 
 OLLAMA_URL = "https://sesame-panzanella-rzl32icxd728lczq.salad.cloud/" 
 SALAD_HEADER ={"Salad-Api-Key":"c598a341-4139-4e45-92e6-2880fbd61425"}
-
+MODEL = "llama2"
 
 # def get_openai_completion(prompt, model="gpt-3.5-turbo"):
 #     messages = [{"role": "user", "content": prompt}]
@@ -108,8 +108,8 @@ def pull_llama2():
     response = requests.post(OLLAMA_URL+"api/pull", json=data,headers=SALAD_HEADER)
     if response.status_code == 200:
         return response.content
+    print(response.content)
     return response.status_code
 
 if __name__ == "__main__":
-    llm = SaladChatOllama()
-    llm.invoke("Hello, world!")
+    print(get_llama_completion("hi"))
